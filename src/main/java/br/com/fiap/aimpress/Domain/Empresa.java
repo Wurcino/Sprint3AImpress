@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Empresa {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_empresa")
     @Column(name = "id_empresa")
     private Long id;
 
@@ -26,7 +27,10 @@ public class Empresa {
     private String descricao;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="cd_endereco")
+    @JoinColumn(name="id_endereco")
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Vaga> vagas;
 
 }

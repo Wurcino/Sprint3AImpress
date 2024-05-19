@@ -15,7 +15,8 @@ import lombok.Setter;
 public class Vaga {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_vagas")
+    @Column(name = "id_vaga")
     private long id;
 
     @Column(name = "titulo_vagas", nullable = false, length = 50)
@@ -27,6 +28,8 @@ public class Vaga {
     @Column(name = "requisitos_vagas",nullable = false, length = 100)
     private String requisitos;
 
-
+    @ManyToOne
+    @JoinColumn(name = "id_empresa", nullable = false)
+    private Empresa empresa;
 
 }

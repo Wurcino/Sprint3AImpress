@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Cidade {
 
     @Id
-    @Column(name="cd_cidade")
+    @Column(name="id_cidade")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_cidade")
     private Long id;
 

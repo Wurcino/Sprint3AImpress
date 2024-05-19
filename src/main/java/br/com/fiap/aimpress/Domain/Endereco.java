@@ -8,15 +8,14 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @Entity
 @Table(name="JV_endereco")
 @SequenceGenerator(name="seq_endereco", sequenceName="seq_JV_endereco", allocationSize=1)
 public class Endereco {
 
     @Id
-    @Column(name="cd_endereco")
+    @Column(name="id_endereco")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_endereco")
     private Long id;
 

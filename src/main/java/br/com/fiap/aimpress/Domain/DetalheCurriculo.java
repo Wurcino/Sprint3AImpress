@@ -18,8 +18,8 @@ import lombok.Setter;
 public class DetalheCurriculo {
 
     @Id
-    @GeneratedValue
-    @Column(name = "cd_detalhe_curriculo")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_detalhe_curriculo")
+    @Column(name = "id_detalhe_curriculo")
     private long id;
 
     @Column(name = "ds_resumo", nullable = false, length = 300)

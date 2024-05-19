@@ -1,13 +1,12 @@
 package br.com.fiap.aimpress.Domain;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -18,7 +17,7 @@ import java.time.LocalDate;
 public class Usuario {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_usuario")
     @Column(name = "id_usuario")
     private Long id;
 
@@ -31,4 +30,6 @@ public class Usuario {
     @Column(name="dt_nascimento")
     private LocalDate dataNascimento;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Curriculo> curriculos;
 }

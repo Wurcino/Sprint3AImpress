@@ -16,7 +16,7 @@ import lombok.Setter;
 public class Curriculo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_curriculo")
     @Column(name = "id_curriculo")
     private Long id;
 
@@ -30,5 +30,9 @@ public class Curriculo {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_detalhe_curriculo", nullable = false)
     private DetalheCurriculo detalheCurriculo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
 }
