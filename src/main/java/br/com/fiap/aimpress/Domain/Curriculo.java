@@ -1,5 +1,7 @@
 package br.com.fiap.aimpress.Domain;
 
+import br.com.fiap.aimpress.dto.Curriculo.AtualizarCurriculoDTO;
+import br.com.fiap.aimpress.dto.Curriculo.CadastroCurriculoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,4 +37,15 @@ public class Curriculo {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
+    public Curriculo (CadastroCurriculoDTO dto) {
+        nome = dto.nome();
+        numeroTelefone = dto.numeroTelefone();
+    }
+
+    public void atualizar(AtualizarCurriculoDTO dto) {
+        if(dto.nome() != null)
+            nome = dto.nome();
+        if(dto.numeroTelefone() != null)
+            numeroTelefone = dto.numeroTelefone();
+    }
 }

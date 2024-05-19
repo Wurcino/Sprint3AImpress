@@ -3,6 +3,8 @@ package br.com.fiap.aimpress.Domain;
 import br.com.fiap.aimpress.Domain.enums.Carreira;
 import br.com.fiap.aimpress.Domain.enums.NivelEscolaridade;
 
+import br.com.fiap.aimpress.dto.Curriculo.AtualizarDetalheCurriculoDTO;
+import br.com.fiap.aimpress.dto.Curriculo.CadastroDetalheCurriculoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +44,28 @@ public class DetalheCurriculo {
     @Column(name = "ds_idiomas", nullable = false, length = 300)
     private String idiomas;
 
+    public DetalheCurriculo(CadastroDetalheCurriculoDTO dto) {
+        resumo = dto.resumo();
+        experiencia = dto.experiencia();
+        nivelEscolaridade = dto.nivelEscolaridade();
+        carreira = dto.carreira();
+        cursos = dto.cursos();
+        idiomas = dto.idiomas();
+    }
 
+    public void atualizar(AtualizarDetalheCurriculoDTO dto) {
+        if(dto.resumo() != null)
+            resumo = dto.resumo();
+        if(dto.experiencia() != null)
+            experiencia = dto.experiencia();
+        if(dto.nivelEscolaridade() != null)
+            nivelEscolaridade = dto.nivelEscolaridade();
+        if(dto.carreira() != null)
+            carreira = dto.carreira();
+        if(dto.cursos() != null)
+            cursos = dto.cursos();
+        if(dto.idiomas() != null)
+            idiomas = dto.idiomas();
+    }
 
 }

@@ -1,5 +1,7 @@
 package br.com.fiap.aimpress.Domain;
 
+import br.com.fiap.aimpress.dto.Empresa.AtualizarEmpresaDTO;
+import br.com.fiap.aimpress.dto.Empresa.CadastroEmpresaDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,5 +34,19 @@ public class Empresa {
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<Vaga> vagas;
+
+    public Empresa(CadastroEmpresaDTO  dto) {
+        nome = dto.nome();
+        descricao = dto.descricao();
+    }
+
+    public void atualizar(AtualizarEmpresaDTO dto) {
+        if(dto.nome() != null)
+            nome = dto.nome();
+        if (dto.descricao() != null)
+            descricao = dto.descricao();
+    }
+
+
 
 }

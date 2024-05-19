@@ -1,5 +1,7 @@
 package br.com.fiap.aimpress.Domain;
 
+import br.com.fiap.aimpress.dto.Usuario.AtualizarUsuarioDTO;
+import br.com.fiap.aimpress.dto.Usuario.CadastroUsuarioDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,4 +34,20 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Curriculo> curriculos;
+
+    public Usuario(CadastroUsuarioDTO dto) {
+        name = dto.name();
+        email = dto.email();
+        dataNascimento = dto.dataNascimento();
+    }
+
+    public void atualizar(AtualizarUsuarioDTO dto) {
+        if(dto.name() != null)
+            name = dto.name();
+        if(dto.email() != null)
+            email = dto.email();
+        if(dto.dataNascimento() != null)
+            dataNascimento = dto.dataNascimento();
+    }
+
 }

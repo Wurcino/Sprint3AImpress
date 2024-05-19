@@ -1,5 +1,7 @@
 package br.com.fiap.aimpress.Domain;
 
+import br.com.fiap.aimpress.dto.Vaga.AtualizarVagaDTO;
+import br.com.fiap.aimpress.dto.Vaga.CadastroVagaDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +33,20 @@ public class Vaga {
     @ManyToOne
     @JoinColumn(name = "id_empresa", nullable = false)
     private Empresa empresa;
+
+    public Vaga(CadastroVagaDTO dto) {
+        titulo = dto.titulo();
+        descricao = dto.descricao();
+        requisitos = dto.requisitos();
+    }
+
+    public void atualizar(AtualizarVagaDTO dto) {
+        if(dto.titulo() != null)
+            titulo = dto.titulo();
+        if(dto.descricao() != null)
+            descricao = dto.descricao();
+        if(dto.requisitos() != null)
+            requisitos = dto.requisitos();
+    }
 
 }
