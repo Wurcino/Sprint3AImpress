@@ -1,7 +1,7 @@
 package br.com.fiap.aimpress.Domain;
 
-import br.com.fiap.aimpress.dto.Cidade.AtualizarCidadeDTO;
-import br.com.fiap.aimpress.dto.Cidade.CadastroCidadeDTO;
+//import br.com.fiap.aimpress.dto.Cidade.AtualizarCidadeDTO;
+//import br.com.fiap.aimpress.dto.Cidade.CadastroCidadeDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,19 +30,19 @@ public class Cidade {
     @Column(name="nr_ddd")
     private Integer ddd;
 
-    public Cidade(CadastroCidadeDTO dto) {
-        nome = dto.nome();
-        uf = dto.uf();
-        ddd = dto.ddd();
-    }
-
-    public void Atualizar(AtualizarCidadeDTO dto) {
-        if (dto.nome() != null)
-            nome = dto.nome();
-        if (dto.ddd() != null)
-            ddd = dto.ddd();
-        if (dto.uf() != null)
-            uf = dto.uf();
-    }
+//    public Cidade(CadastroCidadeDTO dto) {
+//        nome = dto.nome();
+//        uf = dto.uf();
+//        ddd = dto.ddd();
+//    }
+//
+//    public void Atualizar(AtualizarCidadeDTO dto) {
+//        if (dto.nome() != null)
+//            nome = dto.nome();
+//        if (dto.ddd() != null)
+//            ddd = dto.ddd();
+//        if (dto.uf() != null)
+//            uf = dto.uf();
+//    }
 
 }

@@ -8,6 +8,5 @@ import java.util.List;
 public record AtualizarUsuarioDTO(
         String name,
         String email,
-        LocalDate dataNascimento,
-        List<AtualizarCurriculoDTO> curriculos
+        LocalDate dataNascimento
 ) {}

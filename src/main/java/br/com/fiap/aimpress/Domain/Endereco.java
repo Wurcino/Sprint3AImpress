@@ -1,7 +1,7 @@
 package br.com.fiap.aimpress.Domain;
 
-import br.com.fiap.aimpress.dto.Endereco.AtualizarEnderecoDTO;
-import br.com.fiap.aimpress.dto.Endereco.CadastroEnderecoDTO;
+//import br.com.fiap.aimpress.dto.Endereco.AtualizarEnderecoDTO;
+//import br.com.fiap.aimpress.dto.Endereco.CadastroEnderecoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,16 +31,17 @@ public class Endereco {
     @JoinColumn(name="id_cidade")
     private Cidade cidade;
 
-    public Endereco(CadastroEnderecoDTO dto) {
-        logradouro = dto.logradouro();
-        cep = dto.cep();
-    }
-
-    public void atualizar(AtualizarEnderecoDTO dto) {
-        if(dto.logradouro() != null)
-            logradouro = dto.logradouro();
-        if(dto.cep() != null)
-            cep = dto.cep();
-    }
+//    public Endereco(CadastroEnderecoDTO dto) {
+//        logradouro = dto.logradouro();
+//        cep = dto.cep();
+//
+//    }
+//
+//    public void atualizar(AtualizarEnderecoDTO dto) {
+//        if(dto.logradouro() != null)
+//            logradouro = dto.logradouro();
+//        if(dto.cep() != null)
+//            cep = dto.cep();
+//    }
 
 }

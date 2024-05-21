@@ -1,5 +1,7 @@
 package br.com.fiap.aimpress.Domain;
 
+import br.com.fiap.aimpress.Domain.enums.Carreira;
+import br.com.fiap.aimpress.Domain.enums.NivelEscolaridade;
 import br.com.fiap.aimpress.dto.Curriculo.AtualizarCurriculoDTO;
 import br.com.fiap.aimpress.dto.Curriculo.CadastroCurriculoDTO;
 import jakarta.persistence.*;
@@ -29,17 +31,39 @@ public class Curriculo {
     private String numeroTelefone;
     //Ex: 11936620738
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cd_detalhe_curriculo", nullable = false)
-    private DetalheCurriculo detalheCurriculo;
+    @Column(name = "ds_resumo", nullable = false, length = 300)
+    private String resumo;
+
+    @Column(name = "ds_experiencia", nullable = false, length = 300)
+    private String experiencia;
+
+    @Column(name = "nvl_escolaridade", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private NivelEscolaridade nivelEscolaridade;
+
+    @Column(name = "ds_carreira", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Carreira carreira;
+
+    @Column(name = "ds_cursos", nullable = false, length = 300)
+    private String cursos;
+
+    @Column(name = "ds_idiomas", nullable = false, length = 300)
+    private String idiomas;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     public Curriculo (CadastroCurriculoDTO dto) {
         nome = dto.nome();
         numeroTelefone = dto.numeroTelefone();
+        resumo = dto.resumo();
+        experiencia = dto.experiencia();
+        nivelEscolaridade = dto.nivelEscolaridade();
+        carreira = dto.carreira();
+        cursos = dto.cursos();
+        idiomas = dto.idiomas();
     }
 
     public void atualizar(AtualizarCurriculoDTO dto) {
@@ -47,5 +71,17 @@ public class Curriculo {
             nome = dto.nome();
         if(dto.numeroTelefone() != null)
             numeroTelefone = dto.numeroTelefone();
+        if(dto.resumo() != null)
+            resumo = dto.resumo();
+        if(dto.experiencia() != null)
+            experiencia = dto.experiencia();
+        if(dto.nivelEscolaridade() != null)
+            nivelEscolaridade = dto.nivelEscolaridade();
+        if(dto.carreira() != null)
+            carreira = dto.carreira();
+        if(dto.cursos() != null)
+            cursos = dto.cursos();
+        if(dto.idiomas() != null)
+            idiomas = dto.idiomas();
     }
 }

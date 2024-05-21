@@ -28,12 +28,6 @@ public class Empresa {
     @Column(name = "dsc_empresa", nullable = false, length = 100)
     private String descricao;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="id_endereco")
-    private Endereco endereco;
-
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
-    private List<Vaga> vagas;
 
     public Empresa(CadastroEmpresaDTO  dto) {
         nome = dto.nome();

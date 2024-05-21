@@ -32,9 +32,6 @@ public class Usuario {
     @Column(name="dt_nascimento")
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Curriculo> curriculos;
-
     public Usuario(CadastroUsuarioDTO dto) {
         name = dto.name();
         email = dto.email();
