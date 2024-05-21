@@ -31,7 +31,7 @@ public class Vaga {
     private String requisitos;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa", nullable = false)
+    @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
     public Vaga(CadastroVagaDTO dto) {
