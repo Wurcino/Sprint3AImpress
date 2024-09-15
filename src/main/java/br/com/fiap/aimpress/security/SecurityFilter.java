@@ -1,6 +1,6 @@
 package br.com.fiap.aimpress.security;
 
-import br.com.fiap.aimpress.repository.UsuarioRepository;
+import br.com.fiap.aimpress.repository.user.UserRepository;
 import br.com.fiap.aimpress.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -23,7 +22,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -37,7 +36,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             String login = tokenService.getSubject(tokenJwt);
 
             //Pesquisar o usuário pelo login
-            UserDetails usuario =  usuarioRepository.findByLogin(login);
+            UserDetails usuario =  userRepository.findByLogin(login);
 
             //Criar o objeto para setar o usuario no contexto
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());

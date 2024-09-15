@@ -1,6 +1,6 @@
 package br.com.fiap.aimpress.service;
 
-import br.com.fiap.aimpress.model.application.Usuario;
+import br.com.fiap.aimpress.model.user.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -29,12 +29,12 @@ public class TokenService {
         }
     }
 
-    public String gerarToken(Usuario usuario) {
+    public String gerarToken(User user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(senha);
             return JWT.create()
                     .withIssuer("FIAP")
-                    .withSubject(usuario.getLogin())
+                    .withSubject(user.getLogin())
                     .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
                     .sign(algorithm);
         } catch (JWTCreationException e){
