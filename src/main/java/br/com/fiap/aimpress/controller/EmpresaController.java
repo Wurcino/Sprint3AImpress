@@ -1,6 +1,6 @@
-package br.com.fiap.aimpress.Controller;
+package br.com.fiap.aimpress.controller;
 
-import br.com.fiap.aimpress.Domain.Empresa;
+import br.com.fiap.aimpress.model.Empresa;
 import br.com.fiap.aimpress.dto.Empresa.AtualizarEmpresaDTO;
 import br.com.fiap.aimpress.dto.Empresa.CadastroEmpresaDTO;
 import br.com.fiap.aimpress.dto.Empresa.DetalhesEmpresaDTO;

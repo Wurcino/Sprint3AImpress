@@ -1,11 +1,10 @@
-package br.com.fiap.aimpress.Controller;
+package br.com.fiap.aimpress.controller;
 
-import br.com.fiap.aimpress.Domain.Curriculo;
+import br.com.fiap.aimpress.model.Curriculo;
 import br.com.fiap.aimpress.dto.Curriculo.AtualizarCurriculoDTO;
 import br.com.fiap.aimpress.dto.Curriculo.CadastroCurriculoDTO;
 import br.com.fiap.aimpress.dto.Curriculo.DetalhesCurriculoDTO;
 import br.com.fiap.aimpress.repository.CurriculoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

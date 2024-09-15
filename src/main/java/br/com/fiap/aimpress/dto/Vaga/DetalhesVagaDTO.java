@@ -1,6 +1,6 @@
 package br.com.fiap.aimpress.dto.Vaga;
 
-import br.com.fiap.aimpress.Domain.Vaga;
+import br.com.fiap.aimpress.model.Vaga;
 import br.com.fiap.aimpress.dto.Empresa.DetalhesEmpresaDTO;
 
 public record DetalhesVagaDTO(Long id, String titulo, String descricao, String requisitos, DetalhesEmpresaDTO empresa) {

@@ -1,6 +1,6 @@
 package br.com.fiap.aimpress.dto.Usuario;
 
-import br.com.fiap.aimpress.Domain.Usuario;
+import br.com.fiap.aimpress.model.Usuario;
 
 import java.time.LocalDate;
 

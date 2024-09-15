@@ -1,23 +1,14 @@
-package br.com.fiap.aimpress.Controller;
+package br.com.fiap.aimpress.controller;
 
-import br.com.fiap.aimpress.Domain.Usuario;
-import br.com.fiap.aimpress.Domain.Vaga;
-import br.com.fiap.aimpress.dto.Usuario.CadastroUsuarioDTO;
-import br.com.fiap.aimpress.dto.Usuario.DetalhesUsuarioDTO;
+import br.com.fiap.aimpress.model.Vaga;
 import br.com.fiap.aimpress.dto.Vaga.AtualizarVagaDTO;
 import br.com.fiap.aimpress.dto.Vaga.CadastroVagaDTO;
 import br.com.fiap.aimpress.dto.Vaga.DetalhesVagaDTO;
 import br.com.fiap.aimpress.repository.VagaRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/vagas")

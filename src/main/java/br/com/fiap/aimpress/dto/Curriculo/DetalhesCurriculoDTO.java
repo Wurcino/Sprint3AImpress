@@ -1,8 +1,8 @@
 package br.com.fiap.aimpress.dto.Curriculo;
 
-import br.com.fiap.aimpress.Domain.Curriculo;
-import br.com.fiap.aimpress.Domain.enums.Carreira;
-import br.com.fiap.aimpress.Domain.enums.NivelEscolaridade;
+import br.com.fiap.aimpress.model.Curriculo;
+import br.com.fiap.aimpress.model.enums.Carreira;
+import br.com.fiap.aimpress.model.enums.NivelEscolaridade;
 
 public record DetalhesCurriculoDTO(Long id,
                                    String nome,

@@ -1,6 +1,6 @@
-package br.com.fiap.aimpress.Controller;
+package br.com.fiap.aimpress.controller;
 
-import br.com.fiap.aimpress.Domain.Usuario;
+import br.com.fiap.aimpress.model.Usuario;
 import br.com.fiap.aimpress.dto.Usuario.AtualizarUsuarioDTO;
 import br.com.fiap.aimpress.dto.Usuario.CadastroUsuarioDTO;
 import br.com.fiap.aimpress.dto.Usuario.DetalhesUsuarioDTO;
