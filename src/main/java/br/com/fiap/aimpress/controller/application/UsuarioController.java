@@ -5,6 +5,10 @@ import br.com.fiap.aimpress.dto.application.Usuario.AtualizarUsuarioDTO;
 import br.com.fiap.aimpress.dto.application.Usuario.CadastroUsuarioDTO;
 import br.com.fiap.aimpress.dto.application.Usuario.DetalhesUsuarioDTO;
 import br.com.fiap.aimpress.repository.application.UsuarioRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,39 +18,56 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/usuarios")
+@Tag(name = "Usuário", description = "Operações relacionadas aos usuários")
 public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping // Endpoint para cadastrar um novo usuário
+    @Operation(summary = "Cadastrar novo usuário")
+    @PostMapping
     @Transactional
     public ResponseEntity<DetalhesUsuarioDTO> cadastrar(@RequestBody @Valid CadastroUsuarioDTO dto, UriComponentsBuilder builder) {
-        var usuario = new Usuario(dto); // Cria um novo usuário com base nos dados recebidos no DTO
-        usuario = usuarioRepository.save(usuario); // Salva o usuário no banco de dados
-        var uri = builder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri(); // Constrói a URI para o novo usuário criado
-        return ResponseEntity.created(uri).body(new DetalhesUsuarioDTO(usuario)); // Retorna a resposta com o status 201 Created e os detalhes do usuário criado
+        var usuario = new Usuario(dto);
+        usuario = usuarioRepository.save(usuario);
+        var uri = builder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DetalhesUsuarioDTO(usuario));
     }
 
-    @GetMapping("/{id}") // Endpoint para detalhar um usuário existente
+    @Operation(summary = "Detalhar um usuário por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário encontrado"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    @GetMapping("/{id}")
     public ResponseEntity<DetalhesUsuarioDTO> detalhar(@PathVariable Long id) {
-        var usuario = usuarioRepository.findById(id).orElseThrow(); // Busca o usuário pelo ID fornecido
-        return ResponseEntity.ok(new DetalhesUsuarioDTO(usuario)); // Retorna os detalhes do usuário encontrado
+        var usuario = usuarioRepository.findById(id).orElseThrow();
+        return ResponseEntity.ok(new DetalhesUsuarioDTO(usuario));
     }
 
-    @PutMapping("/{id}") // Endpoint para atualizar um usuário existente
+    @Operation(summary = "Atualizar um usuário por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário atualizado"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<DetalhesUsuarioDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizarUsuarioDTO dto) {
-        var usuario = usuarioRepository.findById(id).orElseThrow(); // Busca o usuário pelo ID fornecido
-        usuario.atualizar(dto); // Atualiza os dados do usuário com base nos dados fornecidos no DTO
-        return ResponseEntity.ok(new DetalhesUsuarioDTO(usuario)); // Retorna os detalhes do usuário atualizado
+        var usuario = usuarioRepository.findById(id).orElseThrow();
+        usuario.atualizar(dto);
+        return ResponseEntity.ok(new DetalhesUsuarioDTO(usuario));
     }
 
-    @DeleteMapping("/{id}") // Endpoint para deletar um usuário existente
+    @Operation(summary = "Deletar um usuário por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Usuário deletado"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        var usuario = usuarioRepository.findById(id).orElseThrow(); // Busca o usuário pelo ID fornecido
-        usuarioRepository.delete(usuario); // Deleta o usuário do banco de dados
-        return ResponseEntity.noContent().build(); // Retorna a resposta com o status 204 No Content, indicando que a operação foi bem-sucedida
+        var usuario = usuarioRepository.findById(id).orElseThrow();
+        usuarioRepository.delete(usuario);
+        return ResponseEntity.noContent().build();
     }
 }

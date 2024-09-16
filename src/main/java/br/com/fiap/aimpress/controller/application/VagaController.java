@@ -5,6 +5,10 @@ import br.com.fiap.aimpress.dto.application.Vaga.AtualizarVagaDTO;
 import br.com.fiap.aimpress.dto.application.Vaga.CadastroVagaDTO;
 import br.com.fiap.aimpress.dto.application.Vaga.DetalhesVagaDTO;
 import br.com.fiap.aimpress.repository.application.VagaRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/vagas")
+@Tag(name = "Vaga", description = "Operações relacionadas às vagas")
 public class VagaController {
 
     private final VagaRepository vagaRepository;
@@ -21,12 +26,18 @@ public class VagaController {
         this.vagaRepository = vagaRepository;
     }
 
-    @GetMapping("/{id}") // Endpoint para detalhar um usuário existente
+    @Operation(summary = "Detalhar uma vaga por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Vaga encontrada"),
+            @ApiResponse(responseCode = "404", description = "Vaga não encontrada")
+    })
+    @GetMapping("/{id}")
     public ResponseEntity<DetalhesVagaDTO> detalhar(@PathVariable Long id) {
-        var vaga = vagaRepository.findById(id).orElseThrow(); // Busca o usuário pelo ID fornecido
-        return ResponseEntity.ok(new DetalhesVagaDTO(vaga)); // Retorna os detalhes do usuário encontrado
+        var vaga = vagaRepository.findById(id).orElseThrow();
+        return ResponseEntity.ok(new DetalhesVagaDTO(vaga));
     }
 
+    @Operation(summary = "Cadastrar nova vaga")
     @PostMapping
     public ResponseEntity<DetalhesVagaDTO> cadastrarVaga(@RequestBody CadastroVagaDTO dto) {
         Vaga novaVaga = new Vaga(dto);
@@ -34,6 +45,11 @@ public class VagaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(new DetalhesVagaDTO(savedVaga));
     }
 
+    @Operation(summary = "Atualizar uma vaga por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Vaga atualizada"),
+            @ApiResponse(responseCode = "404", description = "Vaga não encontrada")
+    })
     @PutMapping("/{id}")
     public ResponseEntity<DetalhesVagaDTO> atualizarVaga(@PathVariable Long id, @RequestBody AtualizarVagaDTO dto) {
         Vaga vaga = vagaRepository.findById(id)
@@ -43,6 +59,11 @@ public class VagaController {
         return ResponseEntity.ok(new DetalhesVagaDTO(updatedVaga));
     }
 
+    @Operation(summary = "Excluir uma vaga por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Vaga excluída"),
+            @ApiResponse(responseCode = "404", description = "Vaga não encontrada")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluirVaga(@PathVariable Long id) {
         Vaga vaga = vagaRepository.findById(id)

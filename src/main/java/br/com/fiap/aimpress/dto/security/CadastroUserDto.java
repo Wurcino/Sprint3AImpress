@@ -8,7 +8,7 @@ public record CadastroUserDto(
 
         @NotBlank(message = "Nome não pode ser vazio")
         @Size(max = 20, message = "Username deve conter no máximo 20 caracteres")
-        String login,
+        String username,
 
         @NotBlank(message = "Email não pode ser vazio")
         @Size(max = 100, message = "Email deve conter no máximo 100 caracteres")
