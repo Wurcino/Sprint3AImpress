@@ -25,6 +25,10 @@ Este chatbot de criação de currículos profissionais é uma ferramenta inovado
 
   [Vídeo Pitch](https://youtu.be/mSfu-ns4Kco)
 
+# Link do Swagger
+
+  [Swagger](http://localhost:8080/swagger-ui/index.html)
+
 # Instrução de como rodar a aplicação
 *    Clique no botão CODE destacado em verde e faça o download do arquivo ZIP da aplicação.
 *    Descompacte o arquivo e abra o projeto em uma IDE, de preferência o Intellij.
