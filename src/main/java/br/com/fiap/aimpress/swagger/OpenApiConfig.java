@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-// aqui sera colocado o link de acesso para o acesso da documentação swagger
+// para o teste de documentação Swagger use este link: http://localhost:8080/swagger-ui/index.html
 
 @OpenAPIDefinition(
         info = @Info(contact = @Contact(name = "AImpress", email = "rm550200@fiap.com.br"),
