@@ -1,4 +1,10 @@
-
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Devops_AntonioFigueiredo_Outubro2024 (c65909bf-6186-4598-a89e-54db01bd8434)'
+    appType: 'webApp'
+    WebAppName: 'AImpress'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 trigger:
   branches:
     include:
