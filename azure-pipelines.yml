@@ -1,6 +1,8 @@
 
 trigger:
-  - main
+  branches:
+    include:
+    - main
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -21,7 +23,7 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(System.DefaultWorkingDirectory)/target/*.jar'
+      targetPath: '$(System.DefaultWorkingDirectory)/target'
       artifactName: 'drop'
       publishLocation: 'Pipeline'
 
