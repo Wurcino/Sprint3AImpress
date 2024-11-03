@@ -21,7 +21,7 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(System.DefaultWorkingDirectory)/target'
+      targetPath: '$(System.DefaultWorkingDirectory)/target/aimpress-0.0.1-SNAPSHOT.jar'
       artifactName: 'drop'
       publishLocation: 'pipeline'
 
