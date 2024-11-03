@@ -1,8 +1,7 @@
-
 trigger:
   branches:
     include:
-    - main
+      - main
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -20,18 +19,16 @@ steps:
       testResultsFiles: '**/surefire-reports/TEST-*.xml'  
       goals: 'package'
 
-
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(System.DefaultWorkingDirectory)/target'
       artifactName: 'drop'
-      publishLocation: 'Pipeline'
+      publishLocation: 'pipeline'
 
- 
   - task: AzureRmWebAppDeployment@4
     inputs:
       ConnectionType: 'AzureRM'
-      azureSubscription: 'Devops_AntonioFigueiredo_Outubro2024'
+      azureSubscription: 'Azure for Students(5b271413-1a37-4f3e-a3cd-8406caef910b)'
       appType: 'webApp'
-      WebAppName: 'AImpress'
+      WebAppName: 'AlImpress'
       packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
