@@ -9,6 +9,13 @@ pool:
 steps:
 
   - task: Maven@3
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure for Students(5b271413-1a37-4f3e-a3cd-8406caef910b)'
+    appType: 'webApp'
+    WebAppName: 'AlImpress'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
     inputs:
       mavenPomFile: 'pom.xml'
       mavenOptions: '-Xmx3072m'
