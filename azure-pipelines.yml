@@ -31,4 +31,4 @@ steps:
       azureSubscription: 'Azure for Students(5b271413-1a37-4f3e-a3cd-8406caef910b)'
       appType: 'webApp'
       WebAppName: 'AlImpress'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
