@@ -20,7 +20,7 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(System.DefaultWorkingDirectory)/target/aimpress-0.0.1-SNAPSHOT.jar'
+      targetPath: '$(System.DefaultWorkingDirectory)/target/aimpress-0.0.1-SNAPSHOT.zip'
       artifactName: 'drop'
       publishLocation: 'pipeline'
 
@@ -30,7 +30,7 @@ steps:
       azureSubscription: 'Azure for Students(5b271413-1a37-4f3e-a3cd-8406caef910b)'
       appType: 'webApp'
       WebAppName: 'AlImpress'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/target/aimpress-0.0.1-SNAPSHOT.jar'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/target/aimpress-0.0.1-SNAPSHOT.zip'
 
   - task: AzureRmWebAppDeployment@4
     inputs:
@@ -38,4 +38,4 @@ steps:
       azureSubscription: 'Azure for Students(5b271413-1a37-4f3e-a3cd-8406caef910b)'
       appType: 'webApp'
       WebAppName: 'AlImpress'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
