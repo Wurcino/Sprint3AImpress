@@ -31,7 +31,7 @@ steps:
   - task: AzureRmWebAppDeployment@4
     inputs:
       ConnectionType: 'AzureRM'
-      azureSubscription: 'webapp-rm552368.azurewebsites.net'
+      azureSubscription: 'c65909bf-6186-4598-a89e-54db01bd8434'
       appType: 'webApp'
-      WebAppName: 'webapp-rm552368'
+      WebAppName: 'AImpress'
       packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
